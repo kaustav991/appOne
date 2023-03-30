@@ -5,12 +5,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String fetchedName =
+        ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Dashboard '),
       ),
-      body: const Center(
-        child: Text('Flutter'),
+      body: Center(
+        child: Text('Welcome $fetchedName'),
       ),
       drawer: Drawer(),
     );
