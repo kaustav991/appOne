@@ -9,12 +9,12 @@ class HomePage extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard '),
+        title: const Text('Dashboard '),
       ),
       body: Center(
         child: Text('Welcome $fetchedName'),
       ),
-      drawer: Drawer(),
+      drawer: const Drawer(),
     );
   }
 }

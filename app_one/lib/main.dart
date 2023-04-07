@@ -1,5 +1,6 @@
 import 'package:app_one/screens/home_page.dart';
 import 'package:app_one/screens/login_page.dart';
+import 'package:app_one/screens/otp_screen.dart';
 import 'package:app_one/utils/router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(brightness: Brightness.dark),
       routes: {
         '/': (context) => const LoginPage(),
+        ApponeRoutes.otpRoute: (context) => const OtpScreen(),
         ApponeRoutes.homeRoute: (context) => const HomePage(),
       },
     );
