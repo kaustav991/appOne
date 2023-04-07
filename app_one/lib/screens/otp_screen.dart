@@ -1,3 +1,5 @@
+import 'package:app_one/screens/home_page.dart';
+import 'package:app_one/screens/login_page.dart';
 import 'package:app_one/utils/router.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,15 +18,13 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   String inputValue = ""; // State to hold the input value
 
-  _checkAndNavigate() {
+  _checkAndNavigate(String input) {
     // Logic to check if the input value matches the static value
     String staticValue = "1234"; // Replace with your static value
     if (inputValue == staticValue) {
       // Navigate to the next screen
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => OtpScreen(
-          value: '',
-        ),
+        builder: (context) => const HomePage(),
       ));
     } else {
       // Handle the case where the input value does not match the static value
@@ -93,7 +93,11 @@ class _OtpScreenState extends State<OtpScreen> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.symmetric(horizontal: 20),
                     child: Pinput(
-                      onCompleted: _checkAndNavigate(),
+                      onCompleted: (input) =>
+                          Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      )),
+                      // _checkAndNavigate(input),
                       obscureText: true,
                       length: 4,
                       mainAxisAlignment: MainAxisAlignment.start,
