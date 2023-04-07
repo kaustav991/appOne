@@ -23,11 +23,10 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      routes: {
-        '/': (context) => const LoginPage(),
-        ApponeRoutes.otpRoute: (context) => const OtpScreen(),
-        ApponeRoutes.homeRoute: (context) => const HomePage(),
-      },
+      home: LoginPage(),
+      // routes: {
+      //   '/': (context) => const LoginPage(),
+      // },
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:app_one/screens/otp_screen.dart';
 import 'package:app_one/utils/router.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -26,9 +27,10 @@ class _LoginPageState extends State<LoginPage> {
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 10,
     );
-    await Future.delayed(const Duration(seconds: 4), () {
-      Navigator.pushNamed(context, ApponeRoutes.otpRoute,
-          arguments: fetchedName);
+    await Future.delayed(const Duration(seconds: 4)).then((value) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => OtpScreen(value: fetchedName),
+      ));
     });
     setState(() {
       changeButton = false;
