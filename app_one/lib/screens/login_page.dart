@@ -1,9 +1,10 @@
 import 'package:app_one/screens/otp_screen.dart';
-import 'package:app_one/utils/router.dart';
+// import 'package:app_one/utils/router.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:modal_progress_hud/modal_progress_hud.dart';
-// import 'package:google_fonts/google_fonts.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   String fetchedName = "";
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
+
   moveToHome(BuildContext context) async {
     setState(() {
       changeButton = true;
@@ -63,42 +65,21 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-              child: TextFormField(
-                onChanged: (val) {
-                  fetchedName = val;
-                  setState(() {});
-                },
+              child: IntlPhoneField(
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter Your Phone Number To Get OTP',
+                  labelText: 'Phone Number',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return ("Username Cannot be empty");
-                  }
-                  return null;
+                initialCountryCode: 'IN',
+                onChanged: (phone) {
+                  setState(() {
+                    fetchedName = phone.completeNumber;
+                  });
                 },
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-            //   child: TextFormField(
-            //     obscureText: true,
-            //     decoration: InputDecoration(
-            //       border: OutlineInputBorder(),
-            //       labelText: 'Enter Your Password',
-            //     ),
-            //     validator: (value) {
-            //       if (value!.isEmpty) {
-            //         return ("Password Cannot be empty");
-            //       }
-            //       if (value!.isEmpty) {
-            //         return ("Password Cannot be empty");
-            //       }
-            //       return null;
-            //     },
-            //   ),
-            // ),
             const SizedBox(
               height: 20.0,
             ),
