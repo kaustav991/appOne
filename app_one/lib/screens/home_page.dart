@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        // Return false to disable the back button press
+        // Return `false` to disable the back button
         return false;
       },
       child: Scaffold(

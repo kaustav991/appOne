@@ -5,6 +5,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
+import 'package:libphonenumber/libphonenumber.dart';
+import 'package:libphonenumber/libphonenumber.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,26 +20,61 @@ class _LoginPageState extends State<LoginPage> {
   String fetchedName = "";
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  moveToHome(BuildContext context) async {
-    setState(() {
-      changeButton = true;
-    });
+  bool validatePhoneNumber(String phoneNumber) {
+    final phoneRegex =
+        RegExp(r'^\+?\d{10,15}$'); // Update regex as per your requirement
+    return phoneRegex.hasMatch(phoneNumber);
+  }
 
-    Fluttertoast.showToast(
-      msg: "Generating the OTP...",
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 10,
-    );
-    await Future.delayed(const Duration(seconds: 4)).then((value) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => OtpScreen(value: fetchedName),
-      ));
-    });
-    setState(() {
-      changeButton = false;
-    });
+  void handleGetOTP(BuildContext context) async {
+    // Validate phone field
+    if (fetchedName.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Phone Number field is required.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+    } else {
+      bool isValidPhoneNumber = validatePhoneNumber(fetchedName);
+      if (isValidPhoneNumber) {
+        setState(() {
+          changeButton = true;
+        });
+
+        Fluttertoast.showToast(
+          msg: "Generating the OTP...",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 4,
+        );
+
+        await Future.delayed(const Duration(seconds: 4)).then((value) async {
+          setState(() {
+            changeButton = false;
+          });
+          // Perform action after phone field is not empty and phone number is valid
+          // For example, you can call an API to get OTP
+          // Move to home screen after getting OTP
+          moveToHome(context);
+        });
+      } else {
+        Fluttertoast.showToast(
+          msg: "Please enter a valid phone number.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+        );
+      }
+    }
+  }
+
+  void moveToHome(BuildContext context) async {
+    // Code to move to home page
+    // You can replace this with your own implementation
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => OtpScreen(value: fetchedName),
+    ));
   }
 
   @override
@@ -68,9 +106,9 @@ class _LoginPageState extends State<LoginPage> {
               child: IntlPhoneField(
                 decoration: const InputDecoration(
                   labelText: 'Phone Number',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                  ),
+                  // border: OutlineInputBorder(
+                  //   borderSide: BorderSide(),
+                  // ),
                 ),
                 initialCountryCode: 'IN',
                 onChanged: (phone) {
@@ -87,7 +125,8 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.blueAccent,
               borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
               child: InkWell(
-                onTap: () => moveToHome(context),
+                // onTap: () => moveToHome(context),
+                onTap: () => handleGetOTP(context), // Handle button tap
                 child: AnimatedContainer(
                   duration: const Duration(seconds: 1),
                   width: changeButton ? 50 : 150,
