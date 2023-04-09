@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "595904269275",
+    "project_id": "appone-9748e",
+    "storage_bucket": "appone-9748e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595904269275:android:df7552e7c86975d8f4f5fe",
+        "android_client_info": {
+          "package_name": "com.example.app_one"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595904269275-5rnrsu45omf1j10gq8hdhaj0ucueinm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUllottEbtprQstO5zX7-s14yXdW4VXb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595904269275-5rnrsu45omf1j10gq8hdhaj0ucueinm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -34,7 +34,7 @@ class _OtpScreenState extends State<OtpScreen> {
       // Navigate to the next screen
       Future.delayed(const Duration(seconds: 2)).then((value) async {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) => HomePage(),
         ));
       });
     } else {
@@ -55,10 +55,6 @@ class _OtpScreenState extends State<OtpScreen> {
         Navigator.pop(context);
       }
     }
-  }
-
-  Future<bool> _onWillPop() async {
-    return false; //<-- SEE HERE
   }
 
   @override
@@ -100,7 +96,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         text: 'Please Enter code that we have sent you at ',
                         style: GoogleFonts.poppins(
                           fontSize: 14.0,
-                          color: Color(0xff808d9e),
+                          color: const Color(0xff808d9e),
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -108,7 +104,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         text: '${widget.value}',
                         style: GoogleFonts.poppins(
                           fontSize: 14.0,
-                          color: Color(0xff005BE0),
+                          color: const Color(0xff005BE0),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -121,7 +117,8 @@ class _OtpScreenState extends State<OtpScreen> {
                 SizedBox(
                   width: width,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.symmetric(horizontal: 20),
+                    padding:
+                        const EdgeInsetsDirectional.symmetric(horizontal: 20),
                     child: Pinput(
                       onChanged: (input) {
                         setState(() {
@@ -145,8 +142,11 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20.0,
+                ),
                 Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -159,7 +159,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           'Resend OTP',
                           style: GoogleFonts.poppins(
                             fontSize: 14.0,
-                            color: Color(0xff000000),
+                            color: const Color(0xff000000),
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -167,17 +167,21 @@ class _OtpScreenState extends State<OtpScreen> {
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => const LoginPage(),
                           ));
                           // Handle 'Not getting OTP? Go Back and Check the number' click here
                           // Redirect to home
                         },
-                        child: Text(
-                          'Not getting OTP? Go Back and Check the number',
-                          style: GoogleFonts.poppins(
-                            fontSize: 14.0,
-                            color: Color(0xff005BE0),
-                            fontWeight: FontWeight.w600,
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.symmetric(
+                              vertical: 15.0),
+                          child: Text(
+                            'Not getting OTP? Go Back and Check the number',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14.0,
+                              color: const Color(0xff005BE0),
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),

@@ -1,67 +1,125 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  final double appBarHeight = 70.0; // Set the desired height of the AppBar
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        // Return `false` to disable the back button
-        return false;
-      },
+    return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('Home'),
-        // ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(height: 16.0),
-              Text(
-                'Welcome to the Home Page!',
-                style: TextStyle(fontSize: 24.0),
+        backgroundColor: Colors.white,
+        drawer: const Drawer(),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(appBarHeight),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppBar(
+              backgroundColor: Colors
+                  .lightBlueAccent, // Replace with appropriate background color
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                      30), // Set the desired border radius for the AppBar
+                ),
               ),
-              const SizedBox(height: 16.0),
-              Image.asset(
-                'assets/images/login.png', // Replace with your image asset path
-                height: 200,
-                width: 200,
+              elevation: 0.0, // Remove the AppBar shadow
+              title: Container(
+                decoration: BoxDecoration(
+                  color: Colors
+                      .transparent, // Replace with appropriate background color for the search field
+                  borderRadius: BorderRadius.circular(
+                      50), // Set the desired border radius for the search field
+                ),
+                padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                child: Row(
+                  children: const [
+                    Expanded(
+                      child: TextField(
+                        cursorColor: Colors
+                            .white, // Replace with the desired color for the cursor
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText:
+                              'Search', // Replace with appropriate search hint text
+                          border:
+                              InputBorder.none, // Remove the TextField border
+                          prefixIcon: Icon(Icons.search,
+                              color: Colors
+                                  .white), // Replace with appropriate search icon
+                          // Customize the color of the input text
+                          hintStyle: TextStyle(
+                              color: Colors
+                                  .white), // Replace with the desired color for the hint text
+                          // Customize the color of the cursor
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors
+                          .blue, // Replace with appropriate background color for the avatar
+                      child: Icon(Icons.person,
+                          color: Colors
+                              .white), // Replace with appropriate icon for the avatar
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 16.0),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Add your logic here for button click
-                    },
-                    child: const Text('Button 1'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Add your logic here for button click
-                    },
-                    child: const Text('Button 2'),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40.0),
-              Expanded(
+            ),
+          ),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                color: Colors.white,
                 child: ListView.builder(
-                  itemCount:
-                      10, // Replace with the number of items in your list
-                  itemBuilder: (context, index) {
-                    // Replace with your list item widget
+                  itemCount: 10, // Replace with your actual message list
+                  itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text('List Item $index'),
+                      leading: const CircleAvatar(
+                        backgroundColor: Colors
+                            .blue, // Replace with appropriate sender avatar
+                        child: Text(
+                            'A'), // Replace with appropriate sender initial
+                      ),
+                      title: const Text(
+                          'Sender Name'), // Replace with appropriate sender name
+                      subtitle: const Text(
+                          'This is a message'), // Replace with appropriate message text
+                      trailing: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: const [
+                          SizedBox(height: 10.0), // Add SizedBox for spacing
+                          Text(
+                            '10:30 AM', // Replace with appropriate message timestamp
+                            style: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
               ),
-            ],
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          label: const Text(
+            'Start Chat',
+            style: TextStyle(
+              fontSize: 14, // Customize the font size
+              fontWeight: FontWeight.w600, // Customize the font weight
+              color: Colors.white, // Customize the text color
+            ),
           ),
+          icon: const Icon(Icons.messenger_outline),
+          backgroundColor: Colors.blue,
+          splashColor: Colors.lightBlueAccent,
         ),
       ),
     );
