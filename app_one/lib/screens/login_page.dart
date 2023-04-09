@@ -3,11 +3,7 @@ import 'package:app_one/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
-import 'package:libphonenumber/libphonenumber.dart';
-import 'package:libphonenumber/libphonenumber.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -54,10 +50,23 @@ class _LoginPageState extends State<LoginPage> {
           setState(() {
             changeButton = false;
           });
-          // Perform action after phone field is not empty and phone number is valid
-          // For example, you can call an API to get OTP
-          // Move to home screen after getting OTP
+
           moveToHome(context);
+
+          //! fiREBASE Code
+          // await FirebaseAuth.instance.verifyPhoneNumber(
+          //   phoneNumber: fetchedName,
+          //   verificationCompleted: (PhoneAuthCredential credential) {},
+          //   verificationFailed: (FirebaseAuthException e) {
+          //     if (e.code == 'invalid-phone-number') {
+          //       print('The provided phone number is not valid.');
+          //     }
+          //   },
+          //   codeSent: (String verificationId, int? resendToken) {
+          //     moveToHome(context);
+          //   },
+          //   codeAutoRetrievalTimeout: (String verificationId) {},
+          // );
         });
       } else {
         Fluttertoast.showToast(

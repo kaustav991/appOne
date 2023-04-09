@@ -1,3 +1,5 @@
+import 'package:app_one/screens/start_chat.dart';
+import 'package:app_one/screens/start_chat_first.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -74,24 +76,27 @@ class HomePage extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: 10, // Replace with your actual message list
                   itemBuilder: (BuildContext context, int index) {
+                    String senderName = "Sender ${index + 1}";
+                    String timeStamp = "${index + 1}";
                     return ListTile(
-                      leading: const CircleAvatar(
+                      leading: CircleAvatar(
                         backgroundColor: Colors
                             .blue, // Replace with appropriate sender avatar
-                        child: Text(
-                            'A'), // Replace with appropriate sender initial
+                        child: Text(senderName[
+                            7]), // Replace with appropriate sender initial
                       ),
-                      title: const Text(
-                          'Sender Name'), // Replace with appropriate sender name
+                      title: Text(
+                          senderName), // Replace with appropriate sender name
                       subtitle: const Text(
                           'This is a message'), // Replace with appropriate message text
                       trailing: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: const [
-                          SizedBox(height: 10.0), // Add SizedBox for spacing
+                        children: [
+                          const SizedBox(
+                              height: 10.0), // Add SizedBox for spacing
                           Text(
-                            '10:30 AM', // Replace with appropriate message timestamp
-                            style: TextStyle(
+                            '10:3$timeStamp AM', // Replace with appropriate message timestamp
+                            style: const TextStyle(
                                 fontSize: 12.0,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600),
@@ -107,7 +112,9 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            // Add your onPressed code here!
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => StartChatFirst(),
+            ));
           },
           label: const Text(
             'Start Chat',

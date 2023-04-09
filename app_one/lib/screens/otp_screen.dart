@@ -1,6 +1,6 @@
 import 'package:app_one/screens/home_page.dart';
 import 'package:app_one/screens/login_page.dart';
-import 'package:app_one/utils/router.dart';
+import 'package:app_one/screens/start_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -22,7 +22,8 @@ class _OtpScreenState extends State<OtpScreen> {
   int incorrectAttempts = 0; // Counter for incorrect attempts
 
   void _checkAndNavigate(String input, BuildContext context) {
-    String staticValue = "1234"; // Replace with your static value
+    String staticValue = "123456"; // Replace with your static value
+
     if (input == staticValue) {
       Fluttertoast.showToast(
         msg: "OTP verified. Redirecting...",
@@ -136,7 +137,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       // )),
                       // _checkAndNavigate(input),
                       obscureText: true,
-                      length: 4,
+                      length: 6,
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                     ),
@@ -176,7 +177,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           padding: const EdgeInsetsDirectional.symmetric(
                               vertical: 15.0),
                           child: Text(
-                            'Not getting OTP? Go Back and Check the number',
+                            'Not getting OTP? Edit the Number',
                             style: GoogleFonts.poppins(
                               fontSize: 14.0,
                               color: const Color(0xff005BE0),

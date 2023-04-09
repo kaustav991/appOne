@@ -1,11 +1,12 @@
-import 'package:app_one/screens/home_page.dart';
 import 'package:app_one/screens/login_page.dart';
-import 'package:app_one/screens/otp_screen.dart';
-import 'package:app_one/utils/router.dart';
+import 'package:app_one/screens/start_chat.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      home: LoginPage(),
+      home: const startChat(),
       // routes: {
       //   '/': (context) => const LoginPage(),
       // },
